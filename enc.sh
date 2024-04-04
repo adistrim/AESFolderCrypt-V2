@@ -18,12 +18,22 @@ decrypt_folder() {
     rm "$decrypted_folder.tar.gz"
 }
 
+# Function to check password length
+check_password_length() {
+    password="$1"
+    if [ ${#password} -lt 10 ]; then
+        echo "Password must be at least 10 characters."
+        exit 1
+    fi
+}
+
 echo "Enter 'enc' to encrypt or 'dec' to decrypt:"
 read operation
 
 if [ "$operation" == "enc" ]; then
-    echo "Enter password:"
+    echo "Enter password (must be at least 10 characters):"
     read -s password
+    check_password_length "$password"
     echo "Enter path to folder to encrypt:"
     read folder_path
     echo "Enter path for encrypted file (with .enc extension):"
@@ -43,4 +53,3 @@ else
     echo "Invalid operation. Please enter 'enc' or 'dec'."
     exit 1
 fi
-
