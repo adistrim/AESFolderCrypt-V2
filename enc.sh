@@ -5,7 +5,7 @@ encrypt_folder() {
     folder_path="$1"
     encrypted_file="$2"
     password="$3"
-    tar czf - "$folder_path" | openssl enc -aes-256-cbc -salt -out "$encrypted_file" -k "$password"
+    tar czf - "$folder_path" | openssl enc -aes-256-cbc -salt -pbkdf2 -out "$encrypted_file" -k "$password"
 }
 
 # Function to decrypt folder
@@ -13,7 +13,7 @@ decrypt_folder() {
     encrypted_file="$1"
     decrypted_folder="$2"
     password="$3"
-    openssl enc -aes-256-cbc -d -in "$encrypted_file" -out "$decrypted_folder.tar.gz" -k "$password"
+    openssl enc -aes-256-cbc -d -pbkdf2 -in "$encrypted_file" -out "$decrypted_folder.tar.gz" -k "$password"
     tar xzf "$decrypted_folder.tar.gz" -C "$decrypted_folder"
     rm "$decrypted_folder.tar.gz"
 }
