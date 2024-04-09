@@ -4,6 +4,12 @@ This script provides a simple way to encrypt and decrypt folders using the AES a
 
 Youtube Video: [Encryption on Raspberry pi](https://youtu.be/KQOr3ikgw-M)
 
+### Hashing Algorithm Flowchart
+
+This flowchart illustrates the steps of the hashing algorithm:
+
+![Hashing Algorithm Flowchart](hashing_algorithm.png)
+
 ### License
 
 This project is licensed under the [MIT License](https://www.mit.edu/~amini/LICENSE.md).
