@@ -60,6 +60,7 @@ secure_hash() {
 
         # Concatenating the shuffled characters to form the new input
         input="${char_array[*]}"
+        hashed_output=$(echo -n "$hashed_text" | openssl sha256)
 
         # Hashing the new input using a simple hash function (XOR)
         local hash=0
@@ -70,10 +71,10 @@ secure_hash() {
         done
 
         # Updating the hashed_text with the new hash value
-        hashed_text="$hash"
+        hashed_text="$hashed_output"
     done
 
-    return "$hashed_text"
+    echo "$hashed_text"
 }
 
 echo "Enter 'enc' to encrypt or 'dec' to decrypt:"
@@ -83,7 +84,6 @@ if [ "$operation" == "enc" ]; then
     echo "Enter password (must be at least 10 characters):"
     read -s password
     check_password_length "$password"
-    # let's hash the password
     hpassword=$(secure_hash "$password" "salt" 10)
     echo "Enter path to folder to encrypt:"
     read folder_path
