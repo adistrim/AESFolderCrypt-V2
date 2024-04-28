@@ -32,5 +32,5 @@ This flowchart illustrates the steps of the hashing algorithm:
 
 ### License
 
-This project is licensed under the [MIT License](https://www.mit.edu/~amini/LICENSE.md).
+This project is licensed under the [MIT License](LICENSE).
 
