@@ -4,7 +4,7 @@ This script provides a simple way to encrypt and decrypt folders using the AES a
 
 Youtube Video: [Encryption on Raspberry pi](https://youtu.be/KQOr3ikgw-M)
 
-### Installation
+## Installation
 
 1. Clone the repository:
 
@@ -24,13 +24,33 @@ cd AESFolderCrypt-V2
 ./install.sh
 ```
 
-### Hashing Algorithm Flowchart
+## Usage
 
-This flowchart illustrates the steps of the hashing algorithm:
+### Help
+To view detailed usage instructions, use:
+```bash
+foldercrypt --help
+```
 
-![Hashing Algorithm Flowchart](hashing_algorithm.png)
 
-### License
+### Encrypting a Folder:
+```bash
+foldercrypt -enc <folder_path>
+```
+Example:
+```bash
+foldercrypt -enc my_folder
+```
+### Decrypting an Encrypted File:
+```bash
+foldercrypt -dec <encrypted_file>
+```
+Example:
+```bash
+foldercrypt -dec my_folder.enc
+```
+
+## License
 
 This project is licensed under the [MIT License](LICENSE).
 

@@ -14,19 +14,25 @@ if [ ! -f "$SOURCE_SCRIPT" ]; then
     exit 1
 fi
 
-sudo mv "$SOURCE_SCRIPT" "$DESTINATION_DIR/$DESTINATION_SCRIPT"
+if [ -f "$DESTINATION_DIR/$DESTINATION_SCRIPT" ]; then
+    sudo rm -f "$DESTINATION_DIR/$DESTINATION_SCRIPT"
+    if [ $? -ne 0 ]; then
+        echo "Error: Failed to remove the existing script in '$DESTINATION_DIR'."
+        exit 1
+    fi
+fi
 
+sudo mv "$SOURCE_SCRIPT" "$DESTINATION_DIR/$DESTINATION_SCRIPT"
 if [ $? -ne 0 ]; then
     echo "Error: Failed to move the script to '$DESTINATION_DIR'."
     exit 1
 fi
 
 sudo chmod +x "$DESTINATION_DIR/$DESTINATION_SCRIPT"
-
 if [ $? -ne 0 ]; then
     echo "Error: Failed to make the script executable."
     exit 1
 fi
 
 echo "Installation successful!"
-echo "You can now use the command '$DESTINATION_SCRIPT' to invoke the tool."
+echo "You can now use the command 'foldercrypt --help' to get started."
